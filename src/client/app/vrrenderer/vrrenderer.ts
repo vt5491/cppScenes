@@ -13,7 +13,8 @@ export class VRRenderer {
     console.log('VRRenderer.init: entered')
     try {
       //this.canvas = document.getElementById('vrruntime-view');
-      this.canvas = document.getElementById('scene-div');
+      // this.canvas = document.getElementById('scene-div');
+      this.canvas = document.getElementById('scene-view');
       console.log('initWebGl: this.canvas=' + this.canvas)
 
       var glParms = new Object();

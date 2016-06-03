@@ -16,20 +16,23 @@ import {VtDummy} from '../vt-dummy/vt-dummy'
 })
 
 @Injectable()
-export class CubeOnPlaneScene extends VRScene{
+// export class CubeOnPlaneScene extends VRScene{
+export class CubeOnPlaneScene {
   cube2: Mesh
   private cubeQuat = new THREE.Quaternion().setFromAxisAngle( new THREE.Vector3(0,1,0), Base.ONE_DEG * 0.2 );
   childDummy: THREE.Vector3 = new THREE.Vector3();
   vtDummy: VtDummy;
 
   //constructor(vtDummy: VtDummy) {
-  constructor(vrRenderer: VRRenderer, vtDummy: VtDummy) {
-    super(window.innerWidth, window.innerHeight, vrRenderer)
-    console.log('CubeOnPlane.ctor: entered, vrRenderer=' + vrRenderer)
+  // constructor(vrRenderer: VRRenderer, vtDummy: VtDummy) {
+  constructor(private vrScene: VRScene, private vrRenderer: VRRenderer, vtDummy: VtDummy) {
+    // super(window.innerWidth, window.innerHeight, vrRenderer)
+    // console.log('CubeOnPlane.ctor: entered, vrRenderer=' + vrRenderer)
     this.vtDummy = vtDummy
   }
 
-  init(width: number, height: number, vrRenderer: VRRenderer) {
+  // init(width: number, height: number, vrRenderer: VRRenderer) {
+  init(width: number, height: number) {
     console.log('CubeOnPlaneScene.init: entered')
     console.log('CubeOnPlaneScene.init: about to call super.init')
     //super.init(width, height, vrRenderer)
@@ -38,7 +41,7 @@ export class CubeOnPlaneScene extends VRScene{
     var plane = new THREE.Mesh( geometry, material );
     plane.rotateX(Base.ONE_DEG * 90.0)
     //super.scene.add( plane );
-    this.scene.add( plane );
+    this.vrScene.scene.add( plane );
 
     var geometry2 = new THREE.BoxGeometry(35, 25, 25);
     //geometry2.position = (5, 0, 0)
@@ -49,11 +52,11 @@ export class CubeOnPlaneScene extends VRScene{
     var material2 = new THREE.MeshBasicMaterial(meshParms2);
     this.cube2 = new THREE.Mesh(geometry2, material2);
     //this.cube2.position = new THREE.Vector3(5, 0, 0)
-    this.scene.add(this.cube2);
+    this.vrScene.scene.add(this.cube2);
 
-    this.dummy.x = 17.0
+    // this.dummy.x = 17.0
     //TODO: I think I can remove this
-    vrRenderer.renderer.render(this.scene, this.camera);
+    this.vrRenderer.renderer.render(this.vrScene.scene, this.vrScene.camera);
   }
 
   canvasKeyHandler (event) {
@@ -61,11 +64,11 @@ export class CubeOnPlaneScene extends VRScene{
     //console.log('vrscene.canvasKeyHandler: this.dolly' + this.dolly);
     //console.log('vrscene.canvasKeyHandler: self.dolly' + this.dolly);
     //console.log('cube-on-plane-scene.canvasKeyHandler: super' + super);
-    console.log('cube-on-plane-scene.canvasKeyHandler: this' + this);
-    console.log('cube-on-plane-scene.canvasKeyHandler: this.BaseRotation' + this.BaseRotation);
-    console.log('cube-on-plane-scene.canvasKeyHandler: this.dolly' + this.dolly);
-
-    CameraKeypressEvents.keyHandler(event, this.dolly)
+    // console.log('cube-on-plane-scene.canvasKeyHandler: this' + this);
+    // console.log('cube-on-plane-scene.canvasKeyHandler: this.BaseRotation' + this.BaseRotation);
+    // console.log('cube-on-plane-scene.canvasKeyHandler: this.dolly' + this.dolly);
+    //
+    // CameraKeypressEvents.keyHandler(event, this.dolly)
     //CameraKeypressEvents.keyHandler(event, VRScene.prototype.canvasKeyHandler)
     //CameraKeypressEvents.keyHandler(event, dolly)
   }
@@ -74,11 +77,11 @@ export class CubeOnPlaneScene extends VRScene{
     //window.requestAnimationFrame(this.scene.prototype.mainLoop.bind(this));
     window.requestAnimationFrame(CubeOnPlaneScene.prototype.mainLoop.bind(this));
 
-    this.cube.quaternion.multiply(this.cubeQuat);
+    this.cube2.quaternion.multiply(this.cubeQuat);
 
-    this.vrControls.update();
+    this.vrScene.vrControls.update();
 
-    this.webVrManager.render(this.scene, this.camera);
+    this.vrScene.webVrManager.render(this.vrScene.scene, this.vrScene.camera);
   }
 
 }

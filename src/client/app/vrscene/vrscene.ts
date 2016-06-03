@@ -173,7 +173,7 @@ let VRSceneFactory = (vrRenderer: VRRenderer) => {
   var height = window.innerHeight
 
   vrRenderer.init(width, height)
-  console.log('VRSceneFactor: width=' + width + ', vrRenderer=' + vrRenderer)
+  console.log('VRSceneFactory: width=' + width + ', vrRenderer=' + vrRenderer)
   return new VRScene(window.innerWidth, window.innerHeight, vrRenderer);
 }
 

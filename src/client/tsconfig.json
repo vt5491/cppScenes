@@ -1,0 +1,51 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "declaration": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "mapRoot": "",
+    "module": "system",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noImplicitAny": false,
+    "outDir": "../dist/",
+    "rootDir": ".",
+    "sourceMap": true,
+    "sourceRoot": "/",
+    "target": "es5"
+  },
+  "files": [
+    "app.ts",
+    "app/base/base.spec.ts",
+    "app/base/base.ts",
+    "app/camera-keypress-events/camera-keypress-events.spec.ts",
+    "app/camera-keypress-events/camera-keypress-events.ts",
+    "app/cpp-scenes.spec.ts",
+    "app/cpp-scenes.ts",
+    "app/cube-on-plane-scene/cube-on-plane-scene.spec.ts",
+    "app/cube-on-plane-scene/cube-on-plane-scene.ts",
+    "app/cube-scene/cube-scene.spec.ts",
+    "app/cube-scene/cube-scene.ts",
+    "app/route-config.ts",
+    "app/sphere-scene/sphere-scene.spec.ts",
+    "app/sphere-scene/sphere-scene.ts",
+    "app/utils/utils.spec.ts",
+    "app/utils/utils.ts",
+    "app/vrrenderer/vrrenderer.spec.ts",
+    "app/vrrenderer/vrrenderer.ts",
+    "app/vrruntime/vrruntime.spec.ts",
+    "app/vrruntime/vrruntime.ts",
+    "app/vrscene/vrscene.spec.ts",
+    "app/vrscene/vrscene.ts",
+    "app/vt-dummy/vt-dummy.spec.ts",
+    "app/vt-dummy/vt-dummy.ts",
+    "typings.d.ts"
+  ],
+  "filesGlob": [
+    "**/*.ts"
+  ],
+  "atom": {
+    "rewriteTsconfig": true
+  }
+}

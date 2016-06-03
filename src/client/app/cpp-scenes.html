@@ -1,0 +1,35 @@
+<span [hidden]="hideSpan1">
+<button (click)="onCanvasInitClick(input, $event)"
+        [disabled]="text === 'Angular2'">3-d canvas</button>
+<br/>
+<div [hidden]="hideDiv1" class="container" id ="canvas-container">
+   <canvas id="scene-view"
+           class="camera-keypress-events"
+           tabindex="1"
+           (keydown)="canvasKeyHandler($event)"
+           style="border: 1px solid black;"
+           >
+   </canvas>
+           <!--camera-keypress-events [cubeScene]="cubeScene" -->
+
+</div>
+</span>
+<p></p>
+<button (click)="onVRRuntimeInitClick(input, $event)"
+        [disabled]="text === 'Angular2'">VRRuntime</button>
+<br/>
+<!--<div class="container" id ="canvas-container-2">
+   <canvas id="vrruntime-view"
+           class="camera-keypress-events"
+           tabindex="1"
+           (keydown)="canvasKeyHandler2($event)"
+           style="border: 1px solid black;"
+           >
+   </canvas>
+</div> -->
+<!-- <vrscene></vrscene> -->
+<div id="scene-div">
+  <cube-on-plane-scene></cube-on-plane-scene>
+</div>
+
+<router-outlet></router-outlet>

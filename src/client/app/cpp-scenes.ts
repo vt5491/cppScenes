@@ -14,8 +14,6 @@ import {VtDummy} from './vt-dummy/vt-dummy'
 
 @Component({
   selector: 'cpp-scenes-app',
-  //providers: [ROUTER_PROVIDERS, VRRuntime, VRRenderer,
-//    VRScene, CubeOnPlaneScene, SphereScene, VtDummy],
   providers: [ROUTER_PROVIDERS, VRRuntime, VRRenderer,
     VRSceneProvider,
     // CubeOnPlaneScene,
@@ -23,7 +21,6 @@ import {VtDummy} from './vt-dummy/vt-dummy'
     //VRScene,
     //VRSceneProvider,
     VtDummy],
-  //templateUrl: 'app/cpp-scenes.html',
   templateUrl: './app/cpp-scenes.html',
   directives: [ROUTER_DIRECTIVES, CameraKeypressEvents, VRScene,
     // CubeOnPlaneScene
@@ -48,27 +45,11 @@ export class CppScenesApp {
   // vrScene: VRScene
   //vRSceneProvider: VRSceneProvider;
   vrScene: VRScene
+  cubeOnPlaneScene: CubeOnPlaneScene
 
   //constructor(vrRenderer: VRRenderer, vrScene: VRScene) {
   constructor(vrRuntime: VRRuntime, vtDummy: VtDummy,
     private injector: Injector, public vrRenderer: VRRenderer) {
-    //this.injector.get(VRSceneProvider)
-    // Note: we cannot init vrScene in the constructor because the html provided
-    // by cpp-scene is not yet available.  We need to do it later in an init
-    // step.
-    //this.vrScene = injector.get(VRScene)
-//   new Provider("message", { useValue: 'Hello' })
-// ]);
-//
-//   var injector = Injector.resolveAndCreate([
-//   new Provider("message", { useValue: 'Hello' })
-// ]);
- // this.vrScene = VRSceneProvider;
-  // constructor(vrRenderer: VRRenderer,
-  //     vrScene: VRScene,
-  //     cubeOnPlaneScene: CubeOnPlaneScene,
-  //     sphereScene: SphereScene,
-  //     vtDummy: VtDummy) {
 
     console.log('cpp-scenes: now in ctor')
     this.cubeScene = new CubeScene()
@@ -102,21 +83,22 @@ export class CppScenesApp {
   // }
 
   onCanvasInitClick(input, $event) {
-    console.log('cpp-scenes: now in onCanvasInitClick')
+    console.log('cpp-scenes: now in onCanvasInitClick ')
     // Note: we have to init vrScene here, not in ctor because the html DOM
     // structure isn't set up properly until we are here.
     this.vrScene = this.injector.get(VRScene)
 
-    var cubeOnPlaneScene = new CubeOnPlaneScene(this.vrScene, this.vrRenderer, this.vtDummy)
+    this.cubeOnPlaneScene = new CubeOnPlaneScene(this.vrScene, this.vrRenderer, this.vtDummy)
 
-    cubeOnPlaneScene.init(10,10)
-    cubeOnPlaneScene.mainLoop()
+    this.cubeOnPlaneScene.init(10,10)
+    this.cubeOnPlaneScene.mainLoop()
   }
 
   canvasKeyHandler (event) {
     console.log('cpp-scenes.canvasKeyHandler: event.keyCode=' + event.keyCode);
 
-     this.cubeScene.canvasKeyHandler(event)
+     //this.cubeScene.canvasKeyHandler(event)
+     this.cubeOnPlaneScene.canvasKeyHandler(event)
   }
 
 

@@ -21,11 +21,9 @@ import VREffect = THREE.VREffect;
 })
 @Injectable()
 export class VRScene {
-  //self : VRScene
   private _scene: Scene;
   camera: PerspectiveCamera;
   dolly: Object3D;
-  //private controls: TrackballControls;
   vrControls: VRControls;
   vrEffect: VREffect;
   //private webVrManager: WebVRManager;
@@ -37,7 +35,6 @@ export class VRScene {
   //constructor(ctx: VRRuntime) {}
   //constructor() {}
   constructor(width, height, vrRenderer) {
-  //constructor( width, height, @Inject(VRRenderer) vrRenderer) {
     //VRScene.init(window.innerWidth, window.innerHeight, vrRenderer)
     console.log('VRScene.ctor: entered, width=' + width + ', height=' + height + 'vrRenderer=' + vrRenderer)
     // shouldn't have to do this, but..
@@ -86,52 +83,6 @@ export class VRScene {
     this.dummy.x = 8.0
     console.log('VRScene.init: made it to the end');
   }
-
-/*
-  //initScene(width: number, height: number, renderer: VRRenderer) {
-  init(width: number, height: number, vrRenderer: VRRenderer) {
-    console.log('VRScene.init: entered')
-    this.scene = new THREE.Scene;
-
-    this.camera = new THREE.PerspectiveCamera(75, width / height);
-    this.camera.position.set(0, 1.5, 100);
-    this.dolly = new THREE.Object3D();
-    this.dolly.position.z = 50;
-    this.scene.add(this.dolly);
-    //
-    this.dolly.add(this.camera);
-
-    this.vrControls = new THREE.VRControls(this.camera);
-
-    this.vrEffect = new THREE.VREffect(vrRenderer.renderer);
-    this.vrEffect.setSize(width, height);
-    this.webVrManager = new (<any>window).WebVRManager(vrRenderer.renderer, this.vrEffect);
-    console.log('VRScene.init: this.webVrManager=' + this.webVrManager);
-    this.camera.quaternion.copy(this.BaseRotation);
-
-    var geometry = new THREE.BoxGeometry(25, 25, 25);
-    var meshParms = new Object();
-
-    //meshParms['color'] = 0xffff00;
-    meshParms['color'] = 0xff8000;
-
-    //var material = new THREE.MeshNormalMaterial(meshParms);
-    var material = new THREE.MeshBasicMaterial(meshParms);
-    //material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-    this.cube = new THREE.Mesh(geometry, material);
-    this.scene.add(this.cube);
-
-    // draw!
-    //vrRenderer.renderer.render(this.scene, this.camera);
-    //window.requestAnimationFrame(this.mainLoop);
-    //window.requestAnimationFrame(vtClass.prototype.mainLoop);
-    vrRenderer.canvas.focus();
-    //CubeOnPlaneScene.prototype.mainLoop.bind(this)
-    // bind the 'this' of the canvasKeyHandler to the definition-time 'this'
-    //VRScene.prototype.canvasKeyHandler.bind(this)
-    this.dummy.x = 8.0
-  }
-*/
 
   canvasKeyHandler (event) {
     console.log('vrscene.canvasKeyHandler: event.keyCode=' + event.keyCode);

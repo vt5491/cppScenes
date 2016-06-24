@@ -33,7 +33,8 @@ export class VRRenderer {
     }
 
     // this controls the ambient background color e.g of the the "sky"
-    this.renderer.setClearColor(0xf31313, 1.0);
+    //this.renderer.setClearColor(0xf31313, 1.0);
+    this.renderer.setClearColor(0x13f313, 1.0);
 
     this.renderer.setSize(width, height);
 

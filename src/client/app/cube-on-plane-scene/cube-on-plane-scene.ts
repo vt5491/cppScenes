@@ -61,7 +61,7 @@ export class CubeOnPlaneScene {
 
   canvasKeyHandler (event) {
     console.log('cube-on-plane-scene.canvasKeyHandler: event.keyCode=' + event.keyCode);
-    //console.log('vrscene.canvasKeyHandler: this.dolly' + this.dolly);
+    console.log('vrscene.canvasKeyHandler: this.vrScene' + this.vrScene);
     //console.log('vrscene.canvasKeyHandler: self.dolly' + this.dolly);
     //console.log('cube-on-plane-scene.canvasKeyHandler: super' + super);
     // console.log('cube-on-plane-scene.canvasKeyHandler: this' + this);
@@ -70,7 +70,14 @@ export class CubeOnPlaneScene {
     //
     // CameraKeypressEvents.keyHandler(event, this.dolly)
     //CameraKeypressEvents.keyHandler(event, VRScene.prototype.canvasKeyHandler)
-    //CameraKeypressEvents.keyHandler(event, dolly)
+    switch( event.keyCode) {
+      case 'W'.charCodeAt(0):
+        this.vrScene.dolly.translateY(0.2)
+      break;
+      case 'S'.charCodeAt(0):
+        this.vrScene.dolly.translateY(-0.2)
+      break;
+    }
   }
 
   mainLoop () {

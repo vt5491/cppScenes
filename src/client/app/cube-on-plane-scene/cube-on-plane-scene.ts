@@ -7,6 +7,7 @@ import {Base} from '../base/base'
 import {CameraKeypressEvents} from '../camera-keypress-events/camera-keypress-events'
 import Mesh = THREE.Mesh;
 import {VtDummy} from '../vt-dummy/vt-dummy'
+import {MultiPlane} from '../multi-plane/multi-plane'
 
 @Component ({
   selector: 'cube-on-plane-scene',
@@ -22,6 +23,9 @@ export class CubeOnPlaneScene {
   private cubeQuat = new THREE.Quaternion().setFromAxisAngle( new THREE.Vector3(0,1,0), Base.ONE_DEG * 0.2 );
   childDummy: THREE.Vector3 = new THREE.Vector3();
   vtDummy: VtDummy;
+  //vt add
+  //multiPlane: MultiPlane
+  //vt end
 
   //constructor(vtDummy: VtDummy) {
   // constructor(vrRenderer: VRRenderer, vtDummy: VtDummy) {
@@ -54,6 +58,12 @@ export class CubeOnPlaneScene {
     //this.cube2.position = new THREE.Vector3(5, 0, 0)
     this.vrScene.scene.add(this.cube2);
 
+    //vt add
+    console.log("CubeOnPlaneScene.init: about to get a MultiPlane")
+    var multiPlane = new MultiPlane()
+    console.log("CubeOnPlaneScene.init: this.multiPlane=" + multiPlane)
+    this.vrScene.scene.add(multiPlane.plane);
+    //vt end
     // this.dummy.x = 17.0
     //TODO: I think I can remove this
     this.vrRenderer.renderer.render(this.vrScene.scene, this.vrScene.camera);
@@ -68,16 +78,16 @@ export class CubeOnPlaneScene {
     // console.log('cube-on-plane-scene.canvasKeyHandler: this.BaseRotation' + this.BaseRotation);
     // console.log('cube-on-plane-scene.canvasKeyHandler: this.dolly' + this.dolly);
     //
-    // CameraKeypressEvents.keyHandler(event, this.dolly)
+    CameraKeypressEvents.keyHandler(event, this.vrScene.dolly)
     //CameraKeypressEvents.keyHandler(event, VRScene.prototype.canvasKeyHandler)
-    switch( event.keyCode) {
-      case 'W'.charCodeAt(0):
-        this.vrScene.dolly.translateY(0.2)
-      break;
-      case 'S'.charCodeAt(0):
-        this.vrScene.dolly.translateY(-0.2)
-      break;
-    }
+    // switch( event.keyCode) {
+    //   case 'W'.charCodeAt(0):
+    //     this.vrScene.dolly.translateY(0.2)
+    //   break;
+    //   case 'S'.charCodeAt(0):
+    //     this.vrScene.dolly.translateY(-0.2)
+    //   break;
+    // }
   }
 
   mainLoop () {

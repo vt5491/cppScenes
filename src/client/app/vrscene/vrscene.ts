@@ -60,7 +60,8 @@ export class VRScene {
     console.log('VRScene.init: this.webVrManager=' + this.webVrManager);
     this.camera.quaternion.copy(this.BaseRotation);
 
-    var geometry = new THREE.BoxGeometry(25, 25, 25);
+    //var geometry = new THREE.BoxGeometry(25, 25, 25);
+    var geometry = new THREE.BoxGeometry(5, 5, 5);
     var meshParms = new Object();
 
     //meshParms['color'] = 0xffff00;
@@ -70,6 +71,7 @@ export class VRScene {
     var material = new THREE.MeshBasicMaterial(meshParms);
     //material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
     this.cube = new THREE.Mesh(geometry, material);
+    this.cube.translateY(25)
     this.scene.add(this.cube);
 
     // draw!

@@ -86,6 +86,9 @@ export class CppScenesApp {
     console.log('cpp-scenes: now in onCanvasInitClick ')
     // Note: we have to init vrScene here, not in ctor because the html DOM
     // structure isn't set up properly until we are here.
+    //give keyboard focus back to the canvasKeyHandler
+    document.getElementById('scene-view').focus();
+    
     this.vrScene = this.injector.get(VRScene)
 
     this.cubeOnPlaneScene = new CubeOnPlaneScene(this.vrScene, this.vrRenderer, this.vtDummy)

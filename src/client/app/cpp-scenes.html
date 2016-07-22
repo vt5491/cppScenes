@@ -1,4 +1,11 @@
 <span [hidden]="hideSpan1">
+  <label>Select Scene:<br/>
+  <!-- <input type="radio" name="scene" value="cube-on-plane-scene" checked="checked">Cube on Plane<br>
+  <input type="radio" name="scene" value="cube-on-plane-scene">Mirror<br> -->
+  <input type="radio" [ngModel]="{checked: model.scene == 'cube-on-plane-scene'}" (ngModelChange)="model.scene='cube-on-plane-scene'" name="scene" value="cube-on-plane-scene" dhecked="checked">Cube on Plane<br/>
+  <input type="radio" [ngModel]="{checked: model.scene == 'mirror-scene'}" (ngModelChange)="model.scene='mirror-scene'"  name="scene" value="mirror-scene">Mirror<br/>
+</label>
+<p>
 <button (click)="onCanvasInitClick(input, $event)"
         [disabled]="text === 'Angular2'">3-d canvas</button>
 <br/>

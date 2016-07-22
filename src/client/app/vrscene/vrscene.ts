@@ -36,7 +36,7 @@ export class VRScene {
   //constructor() {}
   constructor(width, height, vrRenderer) {
     //VRScene.init(window.innerWidth, window.innerHeight, vrRenderer)
-    console.log('VRScene.ctor: entered, width=' + width + ', height=' + height + 'vrRenderer=' + vrRenderer)
+    // console.log('VRScene.ctor: entered, width=' + width + ', height=' + height + 'vrRenderer=' + vrRenderer)
     // shouldn't have to do this, but..
     vrRenderer.init()
     //var width = window.innerWidth
@@ -57,7 +57,7 @@ export class VRScene {
     this.vrEffect = new THREE.VREffect(vrRenderer.renderer);
     this.vrEffect.setSize(width, height);
     this.webVrManager = new (<any>window).WebVRManager(vrRenderer.renderer, this.vrEffect);
-    console.log('VRScene.init: this.webVrManager=' + this.webVrManager);
+    // console.log('VRScene.init: this.webVrManager=' + this.webVrManager);
     this.camera.quaternion.copy(this.BaseRotation);
 
     //var geometry = new THREE.BoxGeometry(25, 25, 25);
@@ -70,9 +70,9 @@ export class VRScene {
     //var material = new THREE.MeshNormalMaterial(meshParms);
     var material = new THREE.MeshBasicMaterial(meshParms);
     //material = new THREE.MeshBasicMaterial( {color: 0xffff00, side: THREE.DoubleSide} );
-    this.cube = new THREE.Mesh(geometry, material);
-    this.cube.translateY(25)
-    this.scene.add(this.cube);
+    // this.cube = new THREE.Mesh(geometry, material);
+    // this.cube.translateY(25)
+    // this.scene.add(this.cube);
 
     // draw!
     //vrRenderer.renderer.render(this.scene, this.camera);
@@ -83,16 +83,13 @@ export class VRScene {
     // bind the 'this' of the canvasKeyHandler to the definition-time 'this'
     //VRScene.prototype.canvasKeyHandler.bind(this)
     this.dummy.x = 8.0
-    console.log('VRScene.init: made it to the end');
+    // console.log('VRScene.init: made it to the end');
   }
 
   canvasKeyHandler (event) {
-    console.log('vrscene.canvasKeyHandler: event.keyCode=' + event.keyCode);
+    // console.log('vrscene.canvasKeyHandler: event.keyCode=' + event.keyCode);
     //console.log('vrscene.canvasKeyHandler: this.dolly' + this.dolly);
     //console.log('vrscene.canvasKeyHandler: self.dolly' + this.dolly);
-    console.log('vrscene.canvasKeyHandler: this' + this);
-    console.log('vrscene.canvasKeyHandler: this.BaseRotation' + this.BaseRotation);
-    console.log('vrscene.canvasKeyHandler: this.dolly' + this.dolly);
 
     CameraKeypressEvents.keyHandler(event, this.dolly)
     //CameraKeypressEvents.keyHandler(event, VRScene.prototype.canvasKeyHandler)
@@ -126,7 +123,7 @@ let VRSceneFactory = (vrRenderer: VRRenderer) => {
   var height = window.innerHeight
 
   vrRenderer.init(width, height)
-  console.log('VRSceneFactory: width=' + width + ', vrRenderer=' + vrRenderer)
+  // console.log('VRSceneFactory: width=' + width + ', vrRenderer=' + vrRenderer)
   return new VRScene(window.innerWidth, window.innerHeight, vrRenderer);
 }
 

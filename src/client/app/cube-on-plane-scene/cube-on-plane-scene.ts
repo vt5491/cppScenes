@@ -62,7 +62,10 @@ export class CubeOnPlaneScene {
     console.log("CubeOnPlaneScene.init: about to get a MultiPlane")
     var multiPlane = new MultiPlane()
     console.log("CubeOnPlaneScene.init: this.multiPlane=" + multiPlane)
-    this.vrScene.scene.add(multiPlane.plane);
+    // this.vrScene.scene.add(multiPlane.plane);
+    for (var i=0; i < multiPlane.planeMeshes.length; i++) {
+      this.vrScene.scene.add(multiPlane.planeMeshes[i])
+    }
     //vt end
     // this.dummy.x = 17.0
     //TODO: I think I can remove this
@@ -70,8 +73,8 @@ export class CubeOnPlaneScene {
   }
 
   canvasKeyHandler (event) {
-    console.log('cube-on-plane-scene.canvasKeyHandler: event.keyCode=' + event.keyCode);
-    console.log('vrscene.canvasKeyHandler: this.vrScene' + this.vrScene);
+    // console.log('cube-on-plane-scene.canvasKeyHandler: event.keyCode=' + event.keyCode);
+    // console.log('vrscene.canvasKeyHandler: this.vrScene' + this.vrScene);
     //console.log('vrscene.canvasKeyHandler: self.dolly' + this.dolly);
     //console.log('cube-on-plane-scene.canvasKeyHandler: super' + super);
     // console.log('cube-on-plane-scene.canvasKeyHandler: this' + this);

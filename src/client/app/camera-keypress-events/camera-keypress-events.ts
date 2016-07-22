@@ -27,14 +27,14 @@ export class CameraKeypressEvents {
   static CAMERA_ROT_DELTA = 5;
 
   static keyHandler (event, dolly: Object3D) {
-    console.log('CameraKeypressEvents.keyHandler: event.keyCode=' + event.keyCode)
-    console.log('CameraKeypressEvents.keyHandler: dolly=' + dolly)   
+    // console.log('CameraKeypressEvents.keyHandler: event.keyCode=' + event.keyCode)
+    // console.log('CameraKeypressEvents.keyHandler: dolly=' + dolly)
         switch( event.keyCode) {
       case 'S'.charCodeAt(0):
-        console.log('you pressed s');
+        // console.log('you pressed s');
         //dolly.position.z += CAMERA_MOVE_DELTA;
         dolly.translateZ(this.CAMERA_MOVE_DELTA);
-        console.log('dolly.postion.x=' + dolly.position.x);
+        // console.log('dolly.postion.x=' + dolly.position.x);
       break;
 
       case 'W'.charCodeAt(0):
@@ -81,10 +81,10 @@ export class CameraKeypressEvents {
   }
 
    onKeypress (event, cubeScene) {
-    console.log('CameraKeypressEvents.onKeypress: event.keyCode=' + event.keyCode)
+    // console.log('CameraKeypressEvents.onKeypress: event.keyCode=' + event.keyCode)
         //event.preventDefault();
-    console.log('vtClass.canvasKeyhandler: cubeScene=' + cubeScene);
-    console.log(event, event.keyCode, event.keyIdentifier);
+    // console.log('vtClass.canvasKeyhandler: cubeScene=' + cubeScene);
+    // console.log(event, event.keyCode, event.keyIdentifier);
 
     /*
     */

@@ -8,6 +8,7 @@ module.exports = function(defaults) {
       'three/build/three.js',
       'three/examples/js/controls/VRControls.js',
       'three/examples/js/effects/VREffect.js',
+      'three/examples/js/Mirror.js',
       'webvr-boilerplate/build/webvr-manager.js'
     ]
   });

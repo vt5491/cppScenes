@@ -8,9 +8,11 @@ import {VRScene} from './vrscene/vrscene'
 import {VRSceneProvider} from './vrscene/vrscene'
 import {Injector} from 'angular2/core';
 import {CubeOnPlaneScene} from './cube-on-plane-scene/cube-on-plane-scene';
+import {MirrorScene} from './mirror-scene/mirror-scene';
 // import {SphereScene} from './sphere-scene/sphere-scene';
 import {VRRuntime} from './vrruntime/vrruntime'
 import {VtDummy} from './vt-dummy/vt-dummy'
+import {Utils} from './utils/utils'
 
 @Component({
   selector: 'cpp-scenes-app',
@@ -20,7 +22,7 @@ import {VtDummy} from './vt-dummy/vt-dummy'
     // SphereScene,
     //VRScene,
     //VRSceneProvider,
-    VtDummy],
+    VtDummy, Utils],
   templateUrl: './app/cpp-scenes.html',
   directives: [ROUTER_DIRECTIVES, CameraKeypressEvents, VRScene,
     // CubeOnPlaneScene
@@ -47,9 +49,11 @@ export class CppScenesApp {
   vrScene: VRScene
   cubeOnPlaneScene: CubeOnPlaneScene
 
+  model
   //constructor(vrRenderer: VRRenderer, vrScene: VRScene) {
   constructor(vrRuntime: VRRuntime, vtDummy: VtDummy,
-    private injector: Injector, public vrRenderer: VRRenderer) {
+    private injector: Injector, public vrRenderer: VRRenderer,
+    private utils: Utils ) {
 
     console.log('cpp-scenes: now in ctor')
     this.cubeScene = new CubeScene()
@@ -67,6 +71,11 @@ export class CppScenesApp {
     //   this.vrScene, cubeOnPlaneScene, sphereScene, vtDummy)
 
     this.vtDummy = vtDummy
+
+    this.model = {
+      // scene:  "cube-on-plane-scene"
+      scene:  "mirror-scene"
+    };
   }
 
   // This works, but I'm converting to cube-on-plane-scene
@@ -84,21 +93,37 @@ export class CppScenesApp {
 
   onCanvasInitClick(input, $event) {
     console.log('cpp-scenes: now in onCanvasInitClick ')
+    console.log('cpp-scenes: model.scene=' + this.model.scene)
     // Note: we have to init vrScene here, not in ctor because the html DOM
     // structure isn't set up properly until we are here.
     //give keyboard focus back to the canvasKeyHandler
     document.getElementById('scene-view').focus();
-    
+
     this.vrScene = this.injector.get(VRScene)
 
-    this.cubeOnPlaneScene = new CubeOnPlaneScene(this.vrScene, this.vrRenderer, this.vtDummy)
+    switch (this.model.scene)
+    {
+      case 'cube-on-plane-scene' :
+        this.cubeOnPlaneScene = new CubeOnPlaneScene(this.vrScene, this.vrRenderer, this.vtDummy)
 
-    this.cubeOnPlaneScene.init(10,10)
-    this.cubeOnPlaneScene.mainLoop()
+        this.cubeOnPlaneScene.init(10,10)
+        this.cubeOnPlaneScene.mainLoop()
+      break;
+      case 'mirror-scene' :
+        console.log('now kicking off mirror-scene')
+        var mirrorScene = new MirrorScene(this.vrScene, this.vrRenderer)
+
+        mirrorScene.init(10,10)
+        mirrorScene.mainLoop()
+      break;
+      default :
+        console.log('invalid switch selection');
+    }
+
   }
 
   canvasKeyHandler (event) {
-    console.log('cpp-scenes.canvasKeyHandler: event.keyCode=' + event.keyCode);
+    // console.log('cpp-scenes.canvasKeyHandler: event.keyCode=' + event.keyCode);
 
      //this.cubeScene.canvasKeyHandler(event)
      this.cubeOnPlaneScene.canvasKeyHandler(event)

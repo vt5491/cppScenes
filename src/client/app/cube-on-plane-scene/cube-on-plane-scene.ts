@@ -8,6 +8,7 @@ import {CameraKeypressEvents} from '../camera-keypress-events/camera-keypress-ev
 import Mesh = THREE.Mesh;
 import {VtDummy} from '../vt-dummy/vt-dummy'
 import {MultiPlane} from '../multi-plane/multi-plane'
+import {VRRuntime} from '../vrruntime/vrruntime'
 
 @Component ({
   selector: 'cube-on-plane-scene',
@@ -18,7 +19,7 @@ import {MultiPlane} from '../multi-plane/multi-plane'
 
 @Injectable()
 // export class CubeOnPlaneScene extends VRScene{
-export class CubeOnPlaneScene {
+export class CubeOnPlaneScene implements VRRuntime{
   cube2: Mesh
   private cubeQuat = new THREE.Quaternion().setFromAxisAngle( new THREE.Vector3(0,1,0), Base.ONE_DEG * 0.2 );
   childDummy: THREE.Vector3 = new THREE.Vector3();
@@ -29,14 +30,15 @@ export class CubeOnPlaneScene {
 
   //constructor(vtDummy: VtDummy) {
   // constructor(vrRenderer: VRRenderer, vtDummy: VtDummy) {
-  constructor(private vrScene: VRScene, private vrRenderer: VRRenderer, vtDummy: VtDummy) {
+  constructor(public vrScene: VRScene, public vrRenderer: VRRenderer) {
     // super(window.innerWidth, window.innerHeight, vrRenderer)
     // console.log('CubeOnPlane.ctor: entered, vrRenderer=' + vrRenderer)
-    this.vtDummy = vtDummy
+    // this.vtDummy = vtDummy
   }
 
   // init(width: number, height: number, vrRenderer: VRRenderer) {
-  init(width: number, height: number) {
+  // init(width: number, height: number) {
+  init () {
     console.log('CubeOnPlaneScene.init: entered')
     console.log('CubeOnPlaneScene.init: about to call super.init')
     //super.init(width, height, vrRenderer)
@@ -72,26 +74,26 @@ export class CubeOnPlaneScene {
     this.vrRenderer.renderer.render(this.vrScene.scene, this.vrScene.camera);
   }
 
-  canvasKeyHandler (event) {
-    // console.log('cube-on-plane-scene.canvasKeyHandler: event.keyCode=' + event.keyCode);
-    // console.log('vrscene.canvasKeyHandler: this.vrScene' + this.vrScene);
-    //console.log('vrscene.canvasKeyHandler: self.dolly' + this.dolly);
-    //console.log('cube-on-plane-scene.canvasKeyHandler: super' + super);
-    // console.log('cube-on-plane-scene.canvasKeyHandler: this' + this);
-    // console.log('cube-on-plane-scene.canvasKeyHandler: this.BaseRotation' + this.BaseRotation);
-    // console.log('cube-on-plane-scene.canvasKeyHandler: this.dolly' + this.dolly);
-    //
-    CameraKeypressEvents.keyHandler(event, this.vrScene.dolly)
-    //CameraKeypressEvents.keyHandler(event, VRScene.prototype.canvasKeyHandler)
-    // switch( event.keyCode) {
-    //   case 'W'.charCodeAt(0):
-    //     this.vrScene.dolly.translateY(0.2)
-    //   break;
-    //   case 'S'.charCodeAt(0):
-    //     this.vrScene.dolly.translateY(-0.2)
-    //   break;
-    // }
-  }
+  // canvasKeyHandler (event) {
+  //   // console.log('cube-on-plane-scene.canvasKeyHandler: event.keyCode=' + event.keyCode);
+  //   // console.log('vrscene.canvasKeyHandler: this.vrScene' + this.vrScene);
+  //   //console.log('vrscene.canvasKeyHandler: self.dolly' + this.dolly);
+  //   //console.log('cube-on-plane-scene.canvasKeyHandler: super' + super);
+  //   // console.log('cube-on-plane-scene.canvasKeyHandler: this' + this);
+  //   // console.log('cube-on-plane-scene.canvasKeyHandler: this.BaseRotation' + this.BaseRotation);
+  //   // console.log('cube-on-plane-scene.canvasKeyHandler: this.dolly' + this.dolly);
+  //   //
+  //   CameraKeypressEvents.keyHandler(event, this.vrScene.dolly)
+  //   //CameraKeypressEvents.keyHandler(event, VRScene.prototype.canvasKeyHandler)
+  //   // switch( event.keyCode) {
+  //   //   case 'W'.charCodeAt(0):
+  //   //     this.vrScene.dolly.translateY(0.2)
+  //   //   break;
+  //   //   case 'S'.charCodeAt(0):
+  //   //     this.vrScene.dolly.translateY(-0.2)
+  //   //   break;
+  //   // }
+  // }
 
   mainLoop () {
     //window.requestAnimationFrame(this.scene.prototype.mainLoop.bind(this));

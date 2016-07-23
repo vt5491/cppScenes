@@ -4,5 +4,7 @@ declare namespace THREE {
     constructor(renderer: any, camera : any, options :any)
 
     material : any
+    render()
+    renderWithMirror(otherMirror : Mirror)
   }
 }

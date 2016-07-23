@@ -8,6 +8,7 @@ import {VRSceneProvider} from '../vrscene/vrscene'
 import {SphereScene} from '../sphere-scene/sphere-scene';
 import {VtDummy} from '../vt-dummy/vt-dummy'
 
+/*
 @Component({
   selector: 'vrruntime',
   templateUrl: 'app//vrruntime/vrruntime.html',
@@ -19,19 +20,23 @@ import {VtDummy} from '../vt-dummy/vt-dummy'
   directives: [],
   pipes: []
 })
+*/
 
-@Injectable()
-export class VRRuntime {
-  width : number
-  height : number
+// @Injectable()
+//export class VRRuntime {
+export interface VRRuntime {
+  // width : number
+  // height : number
   vrRenderer: VRRenderer;
-  canvas: HTMLElement;
+  // canvas: HTMLElement;
   vrScene: VRScene;
   //vrSceneProvider: VRSceneProvider;
   // cubeOnPlaneScene: CubeOnPlaneScene;
-  sphereScene: SphereScene;
-  vtDummy: VtDummy;
-
+  // sphereScene: SphereScene;
+  // vtDummy: VtDummy;
+  init();
+  mainLoop();
+/*
   constructor(
     //vrRenderer: VRRenderer,
       //vrScene: VRScene
@@ -62,4 +67,5 @@ export class VRRuntime {
   instanceDoIt() {
     return 7;
   }
+*/
 }

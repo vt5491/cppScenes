@@ -26,46 +26,52 @@ export class CameraKeypressEvents {
   static CAMERA_MOVE_DELTA = 1.2;
   static CAMERA_ROT_DELTA = 5;
 
-  static keyHandler (event, dolly: Object3D) {
+  static keyHandler (event, dolly: Object3D, flipMovement? : boolean ) {
     // console.log('CameraKeypressEvents.keyHandler: event.keyCode=' + event.keyCode)
     // console.log('CameraKeypressEvents.keyHandler: dolly=' + dolly)
-        switch( event.keyCode) {
-      case 'S'.charCodeAt(0):
-        // console.log('you pressed s');
-        //dolly.position.z += CAMERA_MOVE_DELTA;
-        dolly.translateZ(this.CAMERA_MOVE_DELTA);
-        // console.log('dolly.postion.x=' + dolly.position.x);
-      break;
+    var moveFactor = 1;
 
+    if (flipMovement) {
+      moveFactor = -1;
+    }
+    // console.log("CameraKeypressEvents.keyHandler: moveFactor=" + moveFactor)
+    switch( event.keyCode) {
       case 'W'.charCodeAt(0):
         //console.log('you pressed s');
         //this.dolly.position.z -= this.CAMERA_MOVE_DELTA;
-        dolly.translateZ(-this.CAMERA_MOVE_DELTA);
+        dolly.translateZ(moveFactor * -this.CAMERA_MOVE_DELTA);
         //console.log('this.do-ly.postion.x=' + this.dolly.position.x);
       break;
 
-      case 'A'.charCodeAt(0):
-        //this.dolly.position.x -= this.CAMERA_MOVE_DELTA;
-        dolly.translateX(-this.CAMERA_MOVE_DELTA);
+      case 'S'.charCodeAt(0):
+        // console.log('you pressed s');
+        //dolly.position.z += CAMERA_MOVE_DELTA;
+        dolly.translateZ(moveFactor * this.CAMERA_MOVE_DELTA);
+        // console.log('dolly.postion.x=' + dolly.position.x);
       break;
 
       case 'D'.charCodeAt(0):
         //console.log('you pressed s');
         //this.dolly.position.x += this.CAMERA_MOVE_DELTA;
-        dolly.translateX(this.CAMERA_MOVE_DELTA);
+        dolly.translateX(moveFactor * this.CAMERA_MOVE_DELTA);
         //console.log('this.dolly.postion.x=' + this.dolly.position.x);
       break;
 
-      case 'N'.charCodeAt(0):
-        //this.dolly.position.y -= this.CAMERA_MOVE_DELTA;
-        dolly.translateY(-this.CAMERA_MOVE_DELTA);
+      case 'A'.charCodeAt(0):
+        //this.dolly.position.x -= this.CAMERA_MOVE_DELTA;
+        dolly.translateX(moveFactor * -this.CAMERA_MOVE_DELTA);
       break;
 
       case 'P'.charCodeAt(0):
         //console.log('you pressed s');
         //this.dolly.position.y += this.CAMERA_MOVE_DELTA;
         //console.log('this.dolly.postion.x=' + this.dolly.position.x);
-        dolly.translateY(this.CAMERA_MOVE_DELTA);
+        dolly.translateY(moveFactor * this.CAMERA_MOVE_DELTA);
+      break;
+
+      case 'N'.charCodeAt(0):
+        //this.dolly.position.y -= this.CAMERA_MOVE_DELTA;
+        dolly.translateY(moveFactor * -this.CAMERA_MOVE_DELTA);
       break;
 
       case 'Q'.charCodeAt(0):

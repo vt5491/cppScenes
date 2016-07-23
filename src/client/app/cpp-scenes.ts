@@ -10,13 +10,16 @@ import {Injector} from 'angular2/core';
 import {CubeOnPlaneScene} from './cube-on-plane-scene/cube-on-plane-scene';
 import {MirrorScene} from './mirror-scene/mirror-scene';
 // import {SphereScene} from './sphere-scene/sphere-scene';
-import {VRRuntime} from './vrruntime/vrruntime'
+// import {VRRuntime} from './vrruntime/vrruntime'
 import {VtDummy} from './vt-dummy/vt-dummy'
 import {Utils} from './utils/utils'
+import {VRRuntime} from './vrruntime/vrruntime'
 
 @Component({
   selector: 'cpp-scenes-app',
-  providers: [ROUTER_PROVIDERS, VRRuntime, VRRenderer,
+  providers: [ROUTER_PROVIDERS,
+    // VRRuntime,
+    VRRenderer,
     VRSceneProvider,
     // CubeOnPlaneScene,
     // SphereScene,
@@ -40,7 +43,7 @@ export class CppScenesApp {
   cubeScene : CubeScene
   //vrRenderer: VRRenderer
   //vrScene: VRScene
-  vrRuntime: VRRuntime
+  // vrRuntime: VRRuntime
   hideSpan1: boolean = false
   vtDummy: VtDummy
   //vrRenderer: VRRenderer
@@ -48,10 +51,13 @@ export class CppScenesApp {
   //vRSceneProvider: VRSceneProvider;
   vrScene: VRScene
   cubeOnPlaneScene: CubeOnPlaneScene
+  vrRuntime: VRRuntime
 
   model
+  flipMovement: boolean
   //constructor(vrRenderer: VRRenderer, vrScene: VRScene) {
-  constructor(vrRuntime: VRRuntime, vtDummy: VtDummy,
+  // constructor(vrRuntime: VRRuntime, vtDummy: VtDummy,
+  constructor(vtDummy: VtDummy,
     private injector: Injector, public vrRenderer: VRRenderer,
     private utils: Utils ) {
 
@@ -61,7 +67,7 @@ export class CppScenesApp {
     //this.vrRenderer = vrRenderer;
     //this.vrScene = vrScene;
     //this.vrRuntime = vrRuntime;
-    this.vrRuntime = vrRuntime;
+    // this.vrRuntime = vrRuntime;
     // get a custom VRScene.  We can't rely on DI because we don't know
     // certain things until run time (after injection time)
     var width = window.innerWidth;
@@ -104,17 +110,28 @@ export class CppScenesApp {
     switch (this.model.scene)
     {
       case 'cube-on-plane-scene' :
-        this.cubeOnPlaneScene = new CubeOnPlaneScene(this.vrScene, this.vrRenderer, this.vtDummy)
+        // this.cubeOnPlaneScene = new CubeOnPlaneScene(this.vrScene, this.vrRenderer, this.vtDummy)
+        //
+        // this.cubeOnPlaneScene.init(10,10)
+        // this.cubeOnPlaneScene.mainLoop()
+        this.vrRuntime = new CubeOnPlaneScene(this.vrScene, this.vrRenderer)
 
-        this.cubeOnPlaneScene.init(10,10)
-        this.cubeOnPlaneScene.mainLoop()
+        this.vrRuntime.init()
+        this.vrRuntime.mainLoop()
+        this.flipMovement = false
       break;
       case 'mirror-scene' :
         console.log('now kicking off mirror-scene')
-        var mirrorScene = new MirrorScene(this.vrScene, this.vrRenderer)
+        // var mirrorScene = new MirrorScene(this.vrScene, this.vrRenderer)
+        //
+        // // mirrorScene.init(10,10)
+        // mirrorScene.init()
+        // mirrorScene.mainLoop()
+        this.vrRuntime = new MirrorScene(this.vrScene, this.vrRenderer)
 
-        mirrorScene.init(10,10)
-        mirrorScene.mainLoop()
+        this.vrRuntime.init()
+        this.vrRuntime.mainLoop()
+        this.flipMovement = false
       break;
       default :
         console.log('invalid switch selection');
@@ -126,14 +143,15 @@ export class CppScenesApp {
     // console.log('cpp-scenes.canvasKeyHandler: event.keyCode=' + event.keyCode);
 
      //this.cubeScene.canvasKeyHandler(event)
-     this.cubeOnPlaneScene.canvasKeyHandler(event)
+    //  this.cubeOnPlaneScene.canvasKeyHandler(event)
+    CameraKeypressEvents.keyHandler(event, this.vrRuntime.vrScene.dolly, this.flipMovement)
   }
 
 
   onVRRuntimeInitClick(input, $event) {
       console.log('cpp-scenes: now in onVRRuntimeInitClick')
       this.hideSpan1 = true
-      this.vrRuntime.init()
+      // this.vrRuntime.init()
   }
 
   meaningOfLife(meaning?: number) {

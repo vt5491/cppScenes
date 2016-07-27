@@ -37,6 +37,8 @@
     "app/scenes/mirrored-walls/mirrored-walls.ts",
     "app/sphere-scene/sphere-scene.spec.ts",
     "app/sphere-scene/sphere-scene.ts",
+    "app/torus/torus.spec.ts",
+    "app/torus/torus.ts",
     "app/utils/utils.spec.ts",
     "app/utils/utils.ts",
     "app/vrrenderer/vrrenderer.spec.ts",

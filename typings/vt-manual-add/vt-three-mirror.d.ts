@@ -7,4 +7,9 @@ declare namespace THREE {
     render()
     renderWithMirror(otherMirror : Mirror)
   }
+
+  export class FBXLoader extends Object3D{
+    constructor(loadingManager: THREE.LoadingManager)
+  }
+
 }

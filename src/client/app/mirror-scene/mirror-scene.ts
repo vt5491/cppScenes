@@ -67,7 +67,7 @@ export class MirrorScene implements VRRuntime{
     verticalMirrorMesh.rotateY(Base.ONE_DEG * 180.0)
     this.vrScene.scene.add( verticalMirrorMesh );
 
-    // var geometry2 : THREE.BoxGeometry = new THREE.BoxGeometry(35, 25, 25);
+    //var geometry2 : THREE.BoxGeometry = new THREE.BoxGeometry(35, 25, 25);
     var geometry2 : THREE.BoxGeometry = new THREE.BoxGeometry(35, 25, 40);
     // var meshParms = new Object();
     var meshParms = {color: 0x6080ff}

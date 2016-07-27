@@ -1,5 +1,6 @@
 import {Component} from 'angular2/core';
 import {RouteConfig, ROUTER_DIRECTIVES, ROUTER_PROVIDERS} from 'angular2/router';
+import {Http, HTTP_PROVIDERS} from 'angular2/http';
 import {CliRouteConfig} from './route-config';
 import {CubeScene} from './cube-scene/cube-scene';
 import {CameraKeypressEvents} from './camera-keypress-events/camera-keypress-events'
@@ -9,6 +10,7 @@ import {VRSceneProvider} from './vrscene/vrscene'
 import {Injector} from 'angular2/core';
 import {CubeOnPlaneScene} from './cube-on-plane-scene/cube-on-plane-scene';
 import {MirrorScene} from './mirror-scene/mirror-scene';
+import {Torus} from './torus/torus';
 // import {SphereScene} from './sphere-scene/sphere-scene';
 // import {VRRuntime} from './vrruntime/vrruntime'
 import {VtDummy} from './vt-dummy/vt-dummy'
@@ -18,6 +20,7 @@ import {VRRuntime} from './vrruntime/vrruntime'
 @Component({
   selector: 'cpp-scenes-app',
   providers: [ROUTER_PROVIDERS,
+        //      Http,
     // VRRuntime,
     VRRenderer,
     VRSceneProvider,
@@ -59,7 +62,7 @@ export class CppScenesApp {
   // constructor(vrRuntime: VRRuntime, vtDummy: VtDummy,
   constructor(vtDummy: VtDummy,
     private injector: Injector, public vrRenderer: VRRenderer,
-    private utils: Utils ) {
+              private utils: Utils, private http: Http ) {
 
     console.log('cpp-scenes: now in ctor')
     this.cubeScene = new CubeScene()
@@ -80,7 +83,8 @@ export class CppScenesApp {
 
     this.model = {
       // scene:  "cube-on-plane-scene"
-      scene:  "mirror-scene"
+      //scene:  "mirror-scene"
+      scene:  "torus"
     };
   }
 
@@ -133,6 +137,15 @@ export class CppScenesApp {
         this.vrRuntime.mainLoop()
         this.flipMovement = false
       break;
+      case 'torus' :
+        console.log('now kicking off torus')
+        this.vrRuntime = new Torus(this.vrScene, this.vrRenderer, this.http)
+        //this.vrRuntime = new Torus()
+
+        this.vrRuntime.init()
+        this.vrRuntime.mainLoop()
+        // this.flipMovement = false
+      break;
       default :
         console.log('invalid switch selection');
     }
@@ -156,6 +169,17 @@ export class CppScenesApp {
 
   meaningOfLife(meaning?: number) {
     return `The meaning of life is ${meaning || this.defaultMeaning}`;
+  }
+
+  onResize(event) {
+    console.log('cpp-scenes.onResize: event=' + event)
+    var camera = this.vrRuntime.vrScene.camera;
+    var renderer = this.vrRuntime.vrRenderer.renderer
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    renderer.setSize( window.innerWidth, window.innerHeight );
   }
 
   // hideDiv1(){

@@ -19,50 +19,50 @@ import {VRScene} from '../vrscene/vrscene'
 
 describe('VRRuntime Component', () => {
 
-  //beforeEachProviders((): any[] => []);
-  //beforeEachProviders(() => [VRRuntime, Window]);
-  beforeEachProviders(() => [VRRuntime, VRScene]);
+  // //beforeEachProviders((): any[] => []);
+  // //beforeEachProviders(() => [VRRuntime, Window]);
+  // beforeEachProviders(() => [VRRuntime, VRScene]);
 
-  // beforeEachProviders(() => [
-  //    provide(TestService, {useClass: MockTestService})
-  //  ]);
+  // // beforeEachProviders(() => [
+  // //    provide(TestService, {useClass: MockTestService})
+  // //  ]);
 
-  // beforeEachProviders(() => [
-  //   provide(VRRuntime, {vrScene: VRScene})
-  // ]);
+  // // beforeEachProviders(() => [
+  // //   provide(VRRuntime, {vrScene: VRScene})
+  // // ]);
 
-  it('should ...', injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
-    return tcb.createAsync(VRRuntime).then((fixture) => {
-      fixture.detectChanges();
-    });
-  }));
-
-  // it('should doIt', inject([Utils], (service: Utils) => {
-  //   console.log("Utils.doIt()=" + Utils.doIt())
-  //   expect(Utils.doIt()).toEqual(7)
+  // it('should ...', injectAsync([TestComponentBuilder], (tcb:TestComponentBuilder) => {
+  //   return tcb.createAsync(VRRuntime).then((fixture) => {
+  //     fixture.detectChanges();
+  //   });
   // }));
 
-  it('instanceDoIt works', inject([VRRuntime], (component) => {
-    console.log('window.innerWidth=' + window.innerWidth)
-    expect(component.instanceDoIt()).toEqual(7);
-  }));
+  // // it('should doIt', inject([Utils], (service: Utils) => {
+  // //   console.log("Utils.doIt()=" + Utils.doIt())
+  // //   expect(Utils.doIt()).toEqual(7)
+  // // }));
 
-  it('system injects VRScene properly', inject([VRRuntime, VRScene], (component) => {
-    console.log('ut:component.vrScene=' + component.vrScene);
-    expect(component.vrScene).toBeAnInstanceOf(VRScene);
-  }));
+  // it('instanceDoIt works', inject([VRRuntime], (component) => {
+  //   console.log('window.innerWidth=' + window.innerWidth)
+  //   expect(component.instanceDoIt()).toEqual(7);
+  // }));
 
-  it('init works', inject([VRRuntime], (component) => {
-    component.init()
-    console.log('component.width=' + component.width )
+  // it('system injects VRScene properly', inject([VRRuntime, VRScene], (component) => {
+  //   console.log('ut:component.vrScene=' + component.vrScene);
+  //   expect(component.vrScene).toBeAnInstanceOf(VRScene);
+  // }));
 
-    expect(component.width).toEqual(window.innerWidth);
-    expect(component.height).toEqual(window.innerHeight);
+  // it('init works', inject([VRRuntime], (component) => {
+  //   component.init()
+  //   console.log('component.width=' + component.width )
 
-    console.log('vrrenderer.renderer=' + component.vrRenderer.renderer)
+  //   expect(component.width).toEqual(window.innerWidth);
+  //   expect(component.height).toEqual(window.innerHeight);
 
-    expect(component.vrRenderer.renderer).not.toBeNull()
-    expect(component.vrRenderer.renderer).toBeAnInstanceOf(WebGLRenderer)
-  }));
+  //   console.log('vrrenderer.renderer=' + component.vrRenderer.renderer)
+
+  //   expect(component.vrRenderer.renderer).not.toBeNull()
+  //   expect(component.vrRenderer.renderer).toBeAnInstanceOf(WebGLRenderer)
+  // }));
 
 });

@@ -12,5 +12,8 @@
     "three-vrcontrols": "registry:dt/three-vrcontrols#0.0.0+20160317120654",
     "three-vreffect": "registry:dt/three-vreffect#0.0.0+20160317120654",
     "vt-three-mirror": "file:typings/vt-manual-add/vt-three-mirror.d.ts"
+  },
+  "globalDependencies": {
+    "vt-three-mirror": "file:typings/vt-manual-add/vt-three-mirror.d.ts"
   }
 }

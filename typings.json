@@ -11,9 +11,12 @@
     "three": "registry:dt/three#0.0.0+20160412125527",
     "three-vrcontrols": "registry:dt/three-vrcontrols#0.0.0+20160317120654",
     "three-vreffect": "registry:dt/three-vreffect#0.0.0+20160317120654",
-    "vt-three-mirror": "file:typings/vt-manual-add/vt-three-mirror.d.ts"
+    "vt-three-mirror": "file:typings/vt-manual-add/vt-three-mirror.d.ts",
+    "three-orbitcontrols": "registry:dt/three-orbitcontrols#0.0.0+20160704010734"
   },
   "globalDependencies": {
+    "node": "registry:dt/node#6.0.0+20160728152422",
+    "three-orbitcontrols": "registry:dt/three-orbitcontrols#0.0.0+20160704010734",
     "vt-three-mirror": "file:typings/vt-manual-add/vt-three-mirror.d.ts"
   }
 }

@@ -11,6 +11,7 @@ import {Injector} from 'angular2/core';
 import {CubeOnPlaneScene} from './cube-on-plane-scene/cube-on-plane-scene';
 import {MirrorScene} from './mirror-scene/mirror-scene';
 import {Torus} from './torus/torus';
+import {CylinderProjection} from './cylinder-projection/cylinder-projection';
 // import {SphereScene} from './sphere-scene/sphere-scene';
 // import {VRRuntime} from './vrruntime/vrruntime'
 import {VtDummy} from './vt-dummy/vt-dummy'
@@ -84,7 +85,8 @@ export class CppScenesApp {
     this.model = {
       // scene:  "cube-on-plane-scene"
       //scene:  "mirror-scene"
-      scene:  "torus"
+      //scene:  "torus"
+      scene:  "cylinder-projection"
     };
   }
 
@@ -120,9 +122,9 @@ export class CppScenesApp {
         // this.cubeOnPlaneScene.mainLoop()
         this.vrRuntime = new CubeOnPlaneScene(this.vrScene, this.vrRenderer)
 
-        this.vrRuntime.init()
-        this.vrRuntime.mainLoop()
-        this.flipMovement = false
+        // this.vrRuntime.init()
+        // this.vrRuntime.mainLoop()
+        // this.flipMovement = false
       break;
       case 'mirror-scene' :
         console.log('now kicking off mirror-scene')
@@ -133,23 +135,28 @@ export class CppScenesApp {
         // mirrorScene.mainLoop()
         this.vrRuntime = new MirrorScene(this.vrScene, this.vrRenderer)
 
-        this.vrRuntime.init()
-        this.vrRuntime.mainLoop()
-        this.flipMovement = false
+        // this.vrRuntime.init()
+        // this.vrRuntime.mainLoop()
+        // this.flipMovement = false
       break;
       case 'torus' :
         console.log('now kicking off torus')
         this.vrRuntime = new Torus(this.vrScene, this.vrRenderer, this.http)
         //this.vrRuntime = new Torus()
 
-        this.vrRuntime.init()
-        this.vrRuntime.mainLoop()
+        // this.vrRuntime.init()
+        // this.vrRuntime.mainLoop()
         // this.flipMovement = false
+      break;
+      case 'cylinder-projection' :
+        this.vrRuntime = new CylinderProjection(this.vrScene, this.vrRenderer)
       break;
       default :
         console.log('invalid switch selection');
     }
 
+    this.vrRuntime.init()
+    this.vrRuntime.mainLoop()
   }
 
   canvasKeyHandler (event) {

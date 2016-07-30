@@ -12,7 +12,10 @@ module.exports = function(defaults) {
       'three/examples/js/Mirror.js',
       'three/examples/js/loaders/FBXLoader.js',
       'webvr-boilerplate/build/webvr-manager.js',
-      'models/torus_3js.json'
+      'models/torus_3js.json',
+      'three/examples/js/controls/OrbitControls.js',
+      'three/examples/js/utils/ShadowMapViewer.js',
+      'three/examples/js/shaders/UnpackDepthRGBAShader.js'
     ]
   });
   //app.import('models/torus.fbx');

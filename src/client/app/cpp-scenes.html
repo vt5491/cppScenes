@@ -5,6 +5,7 @@
   <input type="radio" [ngModel]="{checked: model.scene == 'cube-on-plane-scene'}" (ngModelChange)="model.scene='cube-on-plane-scene'" name="scene" value="cube-on-plane-scene" dhecked="checked">Cube on Plane<br/>
   <input type="radio" [ngModel]="{checked: model.scene == 'mirror-scene'}" (ngModelChange)="model.scene='mirror-scene'"  name="scene" value="mirror-scene">Mirror<br/>
   <input type="radio" [ngModel]="{checked: model.scene == 'torus'}" (ngModelChange)="model.scene='torus'"  name="scene" value="torus">Torus<br/>
+  <input type="radio" [ngModel]="{checked: model.scene == 'cylinder-projection'}" (ngModelChange)="model.scene='cylinder-projection'"  name="scene" value="cylinder-projection">Cylinder Projection<br/>
 </label>
 <p>
 <button (click)="onCanvasInitClick(input, $event)"

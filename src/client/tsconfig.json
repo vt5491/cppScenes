@@ -28,6 +28,8 @@
     "app/cube-on-plane-scene/cube-on-plane-scene.ts",
     "app/cube-scene/cube-scene.spec.ts",
     "app/cube-scene/cube-scene.ts",
+    "app/cylinder-projection/cylinder-projection.spec.ts",
+    "app/cylinder-projection/cylinder-projection.ts",
     "app/mirror-scene/mirror-scene.spec.ts",
     "app/mirror-scene/mirror-scene.ts",
     "app/multi-plane/multi-plane.spec.ts",
